@@ -51,6 +51,6 @@ jobs:
       - name: Upload to FTP
         run: |
           lftp -u "$FTP_USER","$FTP_PASSWORD" $FTP_HOST <<EOF
-          mirror -R -e -p dist/your-app-name $FTP_PATH
+          mirror -R -e -p dist/patrykrazny $FTP_PATH
           bye
           EOF
