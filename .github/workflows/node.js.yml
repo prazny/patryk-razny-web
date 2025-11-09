@@ -45,12 +45,11 @@ jobs:
       - name: Build Angular app
         run: npm run build
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Upload to FTP
-        run: |
-          lftp -u "$FTP_USER","$FTP_PASSWORD" $FTP_HOST <<EOF
-          mirror -R -e -p dist/patrykrazny $FTP_PATH
-          bye
-          EOF
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/patrykrazny
+          server-dir: ${{ secrets.FTP_PATH }}
