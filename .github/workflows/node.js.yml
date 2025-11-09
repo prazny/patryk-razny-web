@@ -1,4 +1,4 @@
-name: Build & Deploy Angular App via FTP
+name: Build & Deploy Angular Web App via FTP
 
 on:
   push:
